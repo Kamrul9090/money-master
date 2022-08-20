@@ -4,7 +4,6 @@ function inputFieldValue(inputField) {
     const input = document.getElementById(inputField);
     const inputValue = input.value;
     const inpuNumber = parseFloat(inputValue);
-    input.value = "";
     if (isNaN(inpuNumber)) {
         alert("Please give valid amount");
         return inputFieldValue();
@@ -58,18 +57,21 @@ save.addEventListener("click", function () {
 
     const blance = document.getElementById("total-blance");
     const blanceValue = blance.innerText;
-    const blanceAmount = parseFloat(blanceValue);
 
-    //step-14: calculate percentage amount
-    const percentag = (blanceAmount * input_percentage) / 100;
-
-    //step-15 get remainder Blance
-    const remainderBlance = blanceValue - percentag;
-
-    //step-16: showing saving and remainder amount
-    innerTextValue("saving-amount", percentag.toFixed(2));
-    innerTextValue("reminder-blance", remainderBlance.toFixed(2));
-    console.log(percentag);
+    //My Income blance
+    const incomeBlance = inputFieldValue("income")
+    if (input_percentage > 100) {
+        alert("you have enough money");
+        return input_percentage;
+    } else {
+        //step-14: calculate percentage amount
+        const percentag = (incomeBlance * input_percentage) / 100;
+        //step-15 get remainder Blance
+        const remainderBlance = blanceValue - percentag;
+        //step-16: showing saving and remainder amount
+        innerTextValue("saving-amount", percentag.toFixed(2));
+        innerTextValue("reminder-blance", remainderBlance.toFixed(2));
+    }
 });
 
 
